@@ -1,10 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dopt8ky3lrwqo"]
+[gd_scene load_steps=6 format=3 uid="uid://dopt8ky3lrwqo"]
 
-[ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_dlbnt"]
-[ext_resource type="Texture2D" uid="uid://k2sah6puo8dr" path="res://assets/tilesets/Nature Platformer Tileset [16x16][FREE] - RottingPixels/nature-paltformer-tileset-16x16.png" id="2_3d4uy"]
+[ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_otmmb"]
+[ext_resource type="Texture2D" uid="uid://k2sah6puo8dr" path="res://assets/tilesets/Nature Platformer Tileset [16x16][FREE] - RottingPixels/nature-paltformer-tileset-16x16.png" id="2_wv68h"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wwswv"]
+normal = Vector2(1, 0)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ofl84"]
-texture = ExtResource("2_3d4uy")
+texture = ExtResource("2_wv68h")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -118,7 +121,12 @@ sources/0 = SubResource("TileSetAtlasSource_ofl84")
 
 [node name="LevelSelect" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_dlbnt")]
+[node name="WorldBorder" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_wwswv")
+
+[node name="Player" parent="." instance=ExtResource("1_otmmb")]
 z_index = 1
 position = Vector2(21, 26)
 
