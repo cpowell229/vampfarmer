@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 150.0
 const JUMP_VELOCITY = -300.0
+var collected_l1_coins = 0
+var beat_level1 = false
 
 
 func _physics_process(delta: float) -> void:
