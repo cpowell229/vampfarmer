@@ -10,3 +10,4 @@ var beat_level4 = false
 var key1 = false
 var key2 = false
 var key3 = false
+var is_attacking = false

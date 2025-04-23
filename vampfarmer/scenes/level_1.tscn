@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://dnnc6oln8iteb"]
+[gd_scene load_steps=22 format=3 uid="uid://dnnc6oln8iteb"]
 
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_0wikx"]
 [ext_resource type="Script" path="res://scripts/scoreboard_l1.gd" id="1_p72a4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://scripts/sign_2.gd" id="7_8qogk"]
 [ext_resource type="Script" path="res://scripts/secret_block_l1.gd" id="10_blx8m"]
 [ext_resource type="PackedScene" uid="uid://do4ueyokbsvot" path="res://scenes/activated_keyblock.tscn" id="11_oahdc"]
+[ext_resource type="PackedScene" uid="uid://dskr0k8xsu5ex" path="res://enemy.tscn" id="12_f8ax6"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ckvib"]
 normal = Vector2(-1, 0)
@@ -352,6 +353,15 @@ theme_override_font_sizes/font_size = 8
 text = "You discovered a secret key! 
 I wonder where it goes."
 horizontal_alignment = 1
+
+[node name="Enemy" parent="." instance=ExtResource("12_f8ax6")]
+position = Vector2(209, -34)
+
+[node name="Marker2D" type="Marker2D" parent="." groups=["strafe"]]
+position = Vector2(179, -31)
+
+[node name="Marker2D2" type="Marker2D" parent="." groups=["strafe"]]
+position = Vector2(240, -31)
 
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_entered" from="Sign1" to="Sign1" method="_on_body_entered"]
