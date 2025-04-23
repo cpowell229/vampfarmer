@@ -242,7 +242,7 @@ script = ExtResource("1_fcw0e")
 position = Vector2(0, -12)
 scale = Vector2(0.765625, 0.75)
 sprite_frames = SubResource("SpriteFrames_uydur")
-animation = &"Walk"
+animation = &"Attack"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -258,6 +258,7 @@ shape = SubResource("CircleShape2D_mpp62")
 [node name="attack_cooldown" type="Timer" parent="."]
 
 [node name="deal_attack" type="Timer" parent="."]
+wait_time = 1.1
 
 [node name="heal" type="Timer" parent="."]
 wait_time = 3.0

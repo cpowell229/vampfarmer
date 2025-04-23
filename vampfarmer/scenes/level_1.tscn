@@ -355,7 +355,7 @@ I wonder where it goes."
 horizontal_alignment = 1
 
 [node name="Enemy" parent="." instance=ExtResource("12_f8ax6")]
-position = Vector2(209, -34)
+position = Vector2(213, -37)
 
 [node name="Marker2D" type="Marker2D" parent="." groups=["strafe"]]
 position = Vector2(179, -31)
