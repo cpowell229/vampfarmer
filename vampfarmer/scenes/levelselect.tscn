@@ -127,9 +127,6 @@ radius = 11.0
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_psn00")
 
-[node name="Level1MarkerSpawnpoint" type="Node2D" parent="."]
-position = Vector2(136, -6)
-
 [node name="WorldBorder" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBorder"]
@@ -161,6 +158,17 @@ script = ExtResource("3_vajgm")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door1"]
 position = Vector2(136, 25)
 shape = SubResource("CircleShape2D_5qe0v")
+
+[node name="Spawnpoints" type="Node2D" parent="."]
+
+[node name="Level1KeyMarkerSP" type="Node2D" parent="Spawnpoints"]
+position = Vector2(143, -6)
+
+[node name="Level1MarkerSpawnpoint" type="Node2D" parent="Spawnpoints"]
+position = Vector2(131, -6)
+
+[node name="Level2DoorSP" type="Node2D" parent="Spawnpoints"]
+position = Vector2(216, 24)
 
 [connection signal="body_entered" from="Door1" to="Door1" method="_on_body_entered"]
 [connection signal="body_exited" from="Door1" to="Door1" method="_on_body_exited"]

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do4ueyokbsvot"]
+
+[ext_resource type="Texture2D" uid="uid://dh5aatbnkjd67" path="res://assets/sprites/activated_secret_block.png" id="1_qvaou"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_qvaou")

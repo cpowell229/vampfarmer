@@ -1,4 +1,5 @@
 extends Area2D
+@onready var scoreboard = %Scoreboard
 
 
 # Called when the node enters the scene tree for the first time.
@@ -18,6 +19,7 @@ func _on_body_entered(body: Node2D) -> void:
 		var spawn = get_node("/root/level1/Spawnpoint")
 		body.global_position = spawn.global_position
 		body.collected_l1_coins = 0
+		scoreboard.reset()
 	
 	# Unhide Coins
 	for coin in get_tree().get_nodes_in_group("apple_coins"):
@@ -26,6 +28,6 @@ func _on_body_entered(body: Node2D) -> void:
 			coin.get_node("CollisionShape2D").disabled = false
 			
 			
-	# Manage scoreboard and coin count (to be added later)
+	
 	
 	pass # Replace with function body.

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr3irohl2m2t"]
+
+[ext_resource type="Script" path="res://scripts/door_l2.gd" id="1_adro3"]
+[ext_resource type="Texture2D" uid="uid://c2hm6civdny4d" path="res://assets/sprites/door_open.png" id="2_83ays"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_67vbr"]
+radius = 11.0454
+
+[node name="Door_L2" type="Area2D"]
+script = ExtResource("1_adro3")
+
+[node name="DoorOpen" type="Sprite2D" parent="."]
+texture = ExtResource("2_83ays")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_67vbr")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

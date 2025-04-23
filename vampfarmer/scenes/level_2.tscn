@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://xry662dsb3es"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uuox3"]
+distance = -100.0
+
+[node name="Level2" type="Node2D"]
+
+[node name="HolderWorldBorder" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HolderWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_uuox3")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
