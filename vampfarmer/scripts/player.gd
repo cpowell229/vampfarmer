@@ -11,6 +11,10 @@ var alive = true
 var enemy_in_range = false
 var enemy_attack_cooldown = true
 
+@onready var spawn_point = get_node("/root/level1/Spawnpoint")
+@onready var scoreboard = %Scoreboard
+
+
 func player():
 	pass
 
@@ -22,10 +26,11 @@ func _physics_process(delta: float) -> void:
 
 	
 	if health <= 0:
-		alive = false
 		health = 0
 		$AnimatedSprite2D.play("Death")
-		print("player died...")
+		alive = false
+		respawn()
+		
 		
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -46,7 +51,20 @@ func _physics_process(delta: float) -> void:
 		elif velocity.x > 0:
 			$AnimatedSprite2D.flip_h = false
 
-
+func respawn():
+	global_position = spawn_point.global_position
+	collected_l1_coins = 0
+	alive = true 
+	scoreboard.reset()
+	health = 150
+	
+	# Unhide Coins
+	for coin in get_tree().get_nodes_in_group("apple_coins"):
+			coin.show()
+			coin.collected = false
+			coin.get_node("CollisionShape2D").disabled = false
+	
+			
 func attack():
 	if Input.is_action_just_pressed("attack") and not attacking:
 		attacking = true
@@ -57,7 +75,7 @@ func enemy_attack():
 	if enemy_in_range and enemy_attack_cooldown == true:
 		health = health - 15
 		enemy_attack_cooldown = false
-		$Attack_Cooldown.start()
+		$attack_cooldown.start()
 		print("player -15 health")
 
 func _on_attack_cooldown_timeout() -> void:

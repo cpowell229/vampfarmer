@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dskr0k8xsu5ex"]
+[gd_scene load_steps=11 format=3 uid="uid://dskr0k8xsu5ex"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_qub6d"]
 [ext_resource type="Texture2D" uid="uid://b5vh4ajlotbof" path="res://assets/tilesets/Enemy Characters Pack SpriteSheet[20x20][FREE] - RottingPixels/enemies-spritesheet.png" id="2_t4pkr"]
@@ -44,37 +44,37 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_xf07t"]
+radius = 4.0
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_5blou"]
 radius = 22.0227
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4g5w5"]
-radius = 11.0454
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8j5as"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xf07t"]
-radius = 6.0
+radius = 14.0
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_qub6d")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_dkj4l")
 animation = &"move_left"
+frame_progress = 0.993875
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, 6)
+shape = SubResource("CircleShape2D_xf07t")
 
 [node name="range" type="Area2D" parent="."]
 position = Vector2(21, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="range"]
-position = Vector2(-21, 6)
+position = Vector2(-21, 4)
 shape = SubResource("CircleShape2D_5blou")
 
 [node name="hitbox" type="Area2D" parent="."]
-position = Vector2(3, 8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
-position = Vector2(-4, -6)
 shape = SubResource("CircleShape2D_4g5w5")
 
 [node name="take_damage_cooldown" type="Timer" parent="."]
@@ -91,13 +91,6 @@ offset_top = -11.0
 offset_right = 6.0
 offset_bottom = -5.0
 show_percentage = false
-
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_8j5as")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-2, 2)
-shape = SubResource("CircleShape2D_xf07t")
 
 [connection signal="body_entered" from="range" to="." method="_on_range_body_entered"]
 [connection signal="body_exited" from="range" to="." method="_on_range_body_exited"]
