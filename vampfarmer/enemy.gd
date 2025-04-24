@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+var gravity = 500 
 var speed = 15
 var health = 100
 var in_range = false
@@ -13,45 +13,43 @@ var temp_positions : Array
 var current_position : Marker2D
 var direction : Vector2 = Vector2.ZERO
  
-var patrol_y : float
 func enemy():
 	pass
 
 func _ready() -> void: 
-	patrol_y = position.y
 	positions = get_tree().get_nodes_in_group(group_name)
 	print("Found %d markers in group '%s'" % [positions.size(), group_name])
 	_get_positions()
 	_get_next_position()
 func _physics_process(delta: float) -> void:
-	if dead:
-		return
-	position.y = patrol_y
-	update_health()
-	deal_with_attacks()
-	attack()
-	
-	
-	if current_position == null:
-		velocity.x = 0
-	else:
-		var dx = current_position.position.x - position.x
-		var step = speed * delta
-
-		# 2) if we’re close enough, snap and pick the next point
-		if abs(dx) <= step:
-			position.x = current_position.position.x
-			_get_next_position()
-			velocity.x = 0
-		else:
-			velocity.x = speed * sign(dx)
+		attack()
+		deal_with_attacks()
+		attack()
+		update_health()
+		if dead:
+			return
+		var movement_direction = Vector2.ZERO
+		# WANDERING MODE: Move towards current marker
+		if current_position:
+			var diff = current_position.position - position
+			movement_direction = diff.normalized()
+			position += movement_direction * speed * delta
+			move_and_collide(movement_direction * speed * delta)
 			
-		velocity.y = 0
-		move_and_slide()
-		if velocity.x < 0:
+			# When near the target marker, get the next one
+			if position.distance_to(current_position.position) < 15:
+				_get_next_position()
+			
+			# Set animation similar to chase mode, based on direction
+			if abs(diff.x) > abs(diff.y):
+				if diff.x < 0:
+					$AnimatedSprite2D.play("move_left")
+				else:
+					$AnimatedSprite2D.play("move_right")
+		else:
+			# Fallback if for some reason no marker is available
 			$AnimatedSprite2D.play("move_left")
-		elif velocity.x > 0:
-			$AnimatedSprite2D.play("move_right")
+
 
 	
 func _get_positions():
