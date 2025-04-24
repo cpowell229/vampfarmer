@@ -1,0 +1,6 @@
+row 1 = fly/idle (1 to 4)
+row 2 = sleeping (5)
+row 3 = taking damage (6)
+row 4 = dead 1 (7 to 11)
+row 5 = falling (12 to 13)
+row 6 = ground impact (14 to 16)
