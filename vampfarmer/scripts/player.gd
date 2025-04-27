@@ -11,13 +11,18 @@ var alive = true
 var enemy_in_range = false
 var enemy_attack_cooldown = true
 
+
+@onready var label : Label = $"Label"
+
 #@onready var spawn_point = get_node("/root/level1/Spawnpoint")
 @onready var spawn_point = $"../Spawnpoint"
 @onready var scoreboard = %Scoreboard
-
+var bat_scene = preload("res://scenes/bat.tscn")
 
 func player():
 	pass
+func _ready() -> void:
+	label.visible = false
 
 func _physics_process(delta: float) -> void:
 	attack()
@@ -39,6 +44,12 @@ func _physics_process(delta: float) -> void:
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	if Input.is_action_just_pressed("bat_mode"):
+		Global.check()
+		if not Global.disabled:
+			start_bat_mode()
+		else: 
+			show_prompt() 
 
 	if not attacking:
 		var direction := Input.get_axis("ui_left", "ui_right")
@@ -51,7 +62,19 @@ func _physics_process(delta: float) -> void:
 			$AnimatedSprite2D.flip_h = true
 		elif velocity.x > 0:
 			$AnimatedSprite2D.flip_h = false
-
+func start_bat_mode():            # grab current camera
+	var old_transform = global_transform
+	queue_free()
+	var lvl   = get_parent()
+	var bat = Global.BatScene.instantiate()
+	bat.global_transform = old_transform
+	
+	lvl.add_child(bat)
+	
+	
+func show_prompt():
+	label.visible = true
+	$prompt.start() 
 func respawn():
 	global_position = spawn_point.global_position
 	collected_l1_coins = 0
@@ -110,3 +133,7 @@ func _on_hitbox_body_entered(body: Node2D) -> void:
 func _on_hitbox_body_exited(body: Node2D) -> void:
 	if body.has_method("enemy"):
 		enemy_in_range = false
+
+
+func _on_prompt_timeout() -> void:
+	label.visible = false

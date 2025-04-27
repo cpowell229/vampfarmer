@@ -11,3 +11,11 @@ var key1 = false
 var key2 = false
 var key3 = false
 var is_attacking = false
+var bat_uses = 3
+var cur_uses = 0
+var disabled = false
+var PlayerScene : PackedScene = preload("res://scenes/player.tscn")
+var BatScene    : PackedScene = preload("res://scenes/bat.tscn")
+func check():
+	if cur_uses >= bat_uses:
+		disabled = true
