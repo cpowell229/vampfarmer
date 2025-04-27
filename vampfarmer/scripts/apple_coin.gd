@@ -34,19 +34,28 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		
 		# spawning in door when 3 are collected
 		if body.collected_l1_coins == 3:
-			# update flag
-			Global.beat_level1 = true
+			# Handling level detection to se
+			if Global.beat_level1 == false:	# means player on level1
+				Global.beat_level1 = true
+				
+				
+				var door_scene = preload("res://scenes/door_home.tscn") 
+				var door_instance = door_scene.instantiate()
+				
+				var spawn_point = get_tree().get_root().get_node("level1/Door_Spawnpoint")
+				door_instance.global_position = spawn_point.global_position
+				
+				get_tree().get_root().get_node("level1").add_child(door_instance)
+				
+				
+				
+			if Global.beat_level2 == false and Global.beat_level1 == true:		# means player on level2 
+				Global.beat_level2 = true
+				
+				# spawn in door for level 2
+				
 			
-			
-			var door_scene = preload("res://scenes/door_home.tscn") 
-			var door_instance = door_scene.instantiate()
-			
-			var spawn_point = get_tree().get_root().get_node("level1/Door_Spawnpoint")
-			door_instance.global_position = spawn_point.global_position
-			
-			get_tree().get_root().get_node("level1").add_child(door_instance)
-			
-			
+				
 	
 	
 	

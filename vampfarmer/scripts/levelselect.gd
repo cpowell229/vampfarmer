@@ -14,11 +14,11 @@ func _ready() -> void:
 		var key1_spawn = get_node("./Spawnpoints/Level1KeyMarkerSP")
 		key1_marker.global_position = key1_spawn.global_position
 		add_child(key1_marker)
-		var EnemyScene = preload("res://enemy.tscn")
-		var enemy = EnemyScene.instantiate()
-		var sp = get_node("Spawnpoints/EnemySP")    # create this Node2D in your scene
-		enemy.global_position = sp.global_position
-		add_child(enemy)
+		#var EnemyScene = preload("res://enemy.tscn")		# No idea what this does, commenting out to avoid b
+		#var enemy = EnemyScene.instantiate()
+		#var sp = get_node("Spawnpoints/EnemySP")    # create this Node2D in your scene
+		#enemy.global_position = sp.global_position
+		#add_child(enemy)
 
 
 	if player and Global.beat_level1:

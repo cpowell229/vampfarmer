@@ -6,12 +6,13 @@ const JUMP_VELOCITY = -300.0
 var collected_l1_coins = 0
 var beat_level1 = false
 var attacking = false
-var health = 150
+var health = 50
 var alive = true
 var enemy_in_range = false
 var enemy_attack_cooldown = true
 
-@onready var spawn_point = get_node("/root/level1/Spawnpoint")
+#@onready var spawn_point = get_node("/root/level1/Spawnpoint")
+@onready var spawn_point = $"../Spawnpoint"
 @onready var scoreboard = %Scoreboard
 
 
@@ -56,7 +57,7 @@ func respawn():
 	collected_l1_coins = 0
 	alive = true 
 	scoreboard.reset()
-	health = 150
+	health = 50
 	
 	# Unhide Coins
 	for coin in get_tree().get_nodes_in_group("apple_coins"):
@@ -89,16 +90,16 @@ func _on_deal_attack_timeout() -> void:
 
 
 func _on_heal_timeout() -> void:
-	if health < 150:
+	if health < 50:
 		health = health + 20
-		if health > 150:
-			health = 150
+		if health > 50:
+			health = 50
 	if health <= 0:
 		health = 0
 func update_health():
 	var healthBar = $health_bar
 	healthBar.value = health 
-	if health >= 150:
+	if health >= 50:
 		healthBar.visible = false
 	else:
 		healthBar.visible = true
