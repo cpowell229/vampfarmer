@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dopt8ky3lrwqo"]
+[gd_scene load_steps=15 format=3 uid="uid://dopt8ky3lrwqo"]
 
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_otmmb"]
 [ext_resource type="Script" path="res://scripts/levelselect.gd" id="1_psn00"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bphs8w5r3e2ca" path="res://assets/tilesets/Four Seasons Platformer Tileset [16x16][FREE] - RottingPixels/four-seasons-tileset.png" id="4_dp5fy"]
 [ext_resource type="Texture2D" uid="uid://c2hm6civdny4d" path="res://assets/sprites/door_open.png" id="6_g8y0y"]
 [ext_resource type="FontFile" uid="uid://vk5ccel6rf84" path="res://fonts/PixelOperator8-Bold.ttf" id="7_3x8j3"]
+[ext_resource type="AudioStream" uid="uid://f1rf154t6iyt" path="res://assets/music/LevelSelect.mp3" id="8_6x3rt"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wwswv"]
 normal = Vector2(1, 0)
@@ -349,6 +350,10 @@ theme_override_fonts/font = ExtResource("7_3x8j3")
 theme_override_font_sizes/font_size = 8
 text = "Congratulations! You've beat our game."
 horizontal_alignment = 1
+
+[node name="Music_levelselect" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_6x3rt")
+autoplay = true
 
 [connection signal="body_entered" from="Door1" to="Door1" method="_on_body_entered"]
 [connection signal="body_exited" from="Door1" to="Door1" method="_on_body_exited"]

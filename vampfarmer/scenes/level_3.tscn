@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dwkyml2pvhxkq"]
+[gd_scene load_steps=32 format=3 uid="uid://dwkyml2pvhxkq"]
 
 [ext_resource type="Script" path="res://scripts/level_3.gd" id="1_jkgma"]
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_q67fo"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://dh5aatbnkjd67" path="res://assets/sprites/activated_secret_block.png" id="11_1ls5v"]
 [ext_resource type="FontFile" uid="uid://bhckanv0kk0iu" path="res://fonts/PixelOperator8.ttf" id="12_6ubuj"]
 [ext_resource type="Script" path="res://scripts/sign_1.gd" id="13_a4ctk"]
+[ext_resource type="AudioStream" uid="uid://c0qb1n28tbvyw" path="res://assets/music/Level3.mp3" id="14_1rimf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jtk6l"]
 texture = ExtResource("2_1tt1d")
@@ -512,6 +513,10 @@ theme_override_font_sizes/font_size = 8
 text = "You can land on the top area of pipes, 
 but not the rest of them."
 horizontal_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_1rimf")
+autoplay = true
 
 [connection signal="body_entered" from="DeathHitboxes" to="DeathHitboxes" method="_on_body_entered"]
 [connection signal="body_entered" from="SecretBlock" to="SecretBlock" method="_on_body_entered"]

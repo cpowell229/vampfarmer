@@ -32,6 +32,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		#body.collected_l1_coins += 1
 		var current_scene = get_tree().current_scene.name
 		level.coins_left -= 1
+		$Pickup.play()
 		print(level.coins_left)
 			
 		
@@ -42,6 +43,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		
 		# spawning in door when 3 are collected
 		if level.coins_left == 0:
+
 			var current_scene_name = get_tree().current_scene.name
 			var door_scene = preload("res://scenes/door_home.tscn")
 			var door_instance = door_scene.instantiate()

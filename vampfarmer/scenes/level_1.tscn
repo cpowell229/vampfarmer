@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dnnc6oln8iteb"]
+[gd_scene load_steps=25 format=3 uid="uid://dnnc6oln8iteb"]
 
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_0wikx"]
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_5layc"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://do4ueyokbsvot" path="res://scenes/activated_keyblock.tscn" id="11_oahdc"]
 [ext_resource type="PackedScene" uid="uid://dskr0k8xsu5ex" path="res://enemy.tscn" id="12_f8ax6"]
 [ext_resource type="Script" path="res://scripts/enemy2.gd" id="13_4rp2m"]
+[ext_resource type="AudioStream" uid="uid://bvsvot45gr2ff" path="res://assets/music/Level1.mp3" id="15_3yvit"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ckvib"]
 normal = Vector2(-1, 0)
@@ -376,6 +377,10 @@ position = Vector2(265, 64)
 position = Vector2(377, 52)
 script = ExtResource("13_4rp2m")
 group_name = "strafe2"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_3yvit")
+autoplay = true
 
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_entered" from="Sign1" to="Sign1" method="_on_body_entered"]

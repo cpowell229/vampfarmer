@@ -10,7 +10,10 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 func _on_body_exited(body: PhysicsBody2D) -> void:
 	entered = false
 
-
+func _ready() -> void:
+	print("Door Sound Stream: ", $Door.stream)
+	$Door.play()
+	
 func _process(delta: float) -> void:
 	if entered == true:
 		

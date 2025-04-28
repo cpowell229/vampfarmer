@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://deodu1r3vp8jf"
+path="res://.godot/imported/LevelSelect.mp3-7cb76004f1b6fddc02608c587a3f63cf.mp3str"
+
+[deps]
+
+source_file="res://assets/tilesets/Dungeon Platformer Tileset [16x16][FREE] - RottingPixels/LevelSelect.mp3"
+dest_files=["res://.godot/imported/LevelSelect.mp3-7cb76004f1b6fddc02608c587a3f63cf.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
