@@ -515,10 +515,6 @@ position = Vector2(-111, 1)
 z_index = 2
 position = Vector2(-111, -8)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-
 [node name="Main" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_t48wr")
 format = 2

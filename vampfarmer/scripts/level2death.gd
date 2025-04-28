@@ -18,6 +18,8 @@ func _on_body_entered(body: Node2D) -> void:
 		body.global_position = spawn.global_position
 		body.collected_l1_coins = 0
 		body.health = 50
+		Global.cur_uses = 0
+		Global.disabled = false
 		scoreboard.reset()
 	
 	# Unhide Coins

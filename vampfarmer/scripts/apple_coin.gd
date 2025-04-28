@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
 	# pickup
-	if body.name == "Player":
+	if body.name == ("Player") or body.has_method("bat"):
 		if collected:
 			return
 
