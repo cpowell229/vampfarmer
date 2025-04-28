@@ -1,7 +1,7 @@
 extends Node
 
 # level beat checks
-var beat_level1 = false
+var beat_level1 = true
 var beat_level2 = false
 var beat_level3 = false
 #var beat_level4 = false	# woops, ran out of time!

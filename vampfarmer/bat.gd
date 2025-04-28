@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var collected_l1_coins = 0
+#var collected_l1_coins = 0
 var max_speed = 150
 var acceleration = 400
 var bat_damp = 6.0           

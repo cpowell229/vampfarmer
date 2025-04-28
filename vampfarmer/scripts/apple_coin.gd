@@ -4,6 +4,9 @@ var open_door = false
 var collected = false
 
 @onready var scoreboard = %Scoreboard
+var coins_left = 3
+@onready var level = $".."
+
 
 func _ready() -> void:
 	add_to_group("apple_coins")		# to count + also redraw later
@@ -26,7 +29,10 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		collected = true
 		hide()
 		$CollisionShape2D.disabled = true
-		body.collected_l1_coins += 1
+		#body.collected_l1_coins += 1
+		var current_scene = get_tree().current_scene.name
+		level.coins_left -= 1
+			
 		
 		# add to score somewhere? (0/3 -> 1/3, etc.)
 		scoreboard.add_score()
@@ -34,7 +40,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		
 		
 		# spawning in door when 3 are collected
-		if body.collected_l1_coins == 3:
+		if level.coins_left == 0:
 			var current_scene_name = get_tree().current_scene.name
 			var door_scene = preload("res://scenes/door_home.tscn")
 			var door_instance = door_scene.instantiate()

@@ -11,6 +11,8 @@ var alive = true
 var enemy_in_range = false
 var enemy_attack_cooldown = true
 
+@onready var level1 = $".."
+
 
 @onready var label : Label = $"Label"
 
@@ -23,7 +25,7 @@ func player():
 	pass
 func _ready() -> void:
 	label.visible = false
-	Global.start()
+	#Global.start()
 
 func _physics_process(delta: float) -> void:
 	attack()
@@ -78,7 +80,9 @@ func show_prompt():
 	$prompt.start() 
 func respawn():
 	global_position = spawn_point.global_position
-	collected_l1_coins = 0
+	#collected_l1_coins = 0
+	level1.coins_left = 3
+	
 	alive = true 
 	scoreboard.reset()
 	health = 50

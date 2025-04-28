@@ -1,6 +1,6 @@
 extends Area2D
 @onready var scoreboard = %Scoreboard
-
+@onready var level1 = $".."
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,7 +18,8 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.name == "Player":
 		var spawn = get_node("/root/level1/Spawnpoint")
 		body.global_position = spawn.global_position
-		body.collected_l1_coins = 0
+		#body.collected_l1_coins = 0
+		level1.coins_left = 3
 		body.health = 50
 		scoreboard.reset()
 	
