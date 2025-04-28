@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dopt8ky3lrwqo"]
+[gd_scene load_steps=17 format=3 uid="uid://dopt8ky3lrwqo"]
 
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_otmmb"]
 [ext_resource type="Script" path="res://scripts/levelselect.gd" id="1_psn00"]
@@ -275,6 +275,14 @@ sources/0 = SubResource("TileSetAtlasSource_v3k3b")
 [sub_resource type="CircleShape2D" id="CircleShape2D_5qe0v"]
 radius = 11.0
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ca0jj"]
+normal = Vector2(-1, 0)
+distance = -353.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v55ty"]
+normal = Vector2(-0.00353355, 0.999994)
+distance = -233.0
+
 [node name="LevelSelect" type="Node2D"]
 script = ExtResource("1_psn00")
 
@@ -354,6 +362,16 @@ horizontal_alignment = 1
 [node name="Music_levelselect" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_6x3rt")
 autoplay = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_ca0jj")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+shape = SubResource("WorldBoundaryShape2D_v55ty")
 
 [connection signal="body_entered" from="Door1" to="Door1" method="_on_body_entered"]
 [connection signal="body_exited" from="Door1" to="Door1" method="_on_body_exited"]

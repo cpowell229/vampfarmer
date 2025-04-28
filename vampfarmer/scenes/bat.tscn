@@ -143,6 +143,6 @@ zoom = Vector2(4, 4)
 position_smoothing_enabled = true
 
 [node name="bat_duration" type="Timer" parent="."]
-wait_time = 7.5
+wait_time = 5.0
 
 [connection signal="timeout" from="bat_duration" to="." method="_on_bat_duration_timeout"]

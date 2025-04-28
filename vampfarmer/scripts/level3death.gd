@@ -20,6 +20,7 @@ func _on_body_entered(body: Node2D) -> void:
 		level3.coins_left = 3
 		body.health = 50
 		Global.cur_uses = 0
+		Global.check()
 		Global.disabled = false
 		scoreboard.reset()
 	

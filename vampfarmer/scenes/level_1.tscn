@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dnnc6oln8iteb"]
+[gd_scene load_steps=26 format=3 uid="uid://dnnc6oln8iteb"]
 
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_0wikx"]
 [ext_resource type="Script" path="res://scripts/level_1.gd" id="1_5layc"]
@@ -218,6 +218,10 @@ size = Vector2(46, 49)
 [sub_resource type="CircleShape2D" id="CircleShape2D_qs231"]
 radius = 17.1172
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_bi5nf"]
+normal = Vector2(0.00671126, 0.999977)
+distance = -418.004
+
 [node name="level1" type="Node2D"]
 script = ExtResource("1_5layc")
 
@@ -381,6 +385,11 @@ group_name = "strafe2"
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_3yvit")
 autoplay = true
+
+[node name="TopBorder" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopBorder"]
+shape = SubResource("WorldBoundaryShape2D_bi5nf")
 
 [connection signal="body_entered" from="Water" to="Water" method="_on_body_entered"]
 [connection signal="body_entered" from="Sign1" to="Sign1" method="_on_body_entered"]

@@ -21,6 +21,8 @@ func _on_body_entered(body: Node2D) -> void:
 		#body.collected_l1_coins = 0
 		level1.coins_left = 3
 		body.health = 50
+		Global.cur_uses = 0
+		Global.check()
 		scoreboard.reset()
 	
 	# Unhide Coins

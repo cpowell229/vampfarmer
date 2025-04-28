@@ -36,10 +36,10 @@ func move(delta):
 	if input_vec.is_zero_approx():
 		velocity.x = 0
 	move_and_slide()
-	if velocity.length() > 10:
-		rotation_degrees = lerp_angle(rotation_degrees,
-		velocity.angle() * 180.0 / PI,         
-		0.15) 
+	#if velocity.length() > 10:
+		#rotation_degrees = lerp_angle(rotation_degrees,
+		#velocity.angle() * 180.0 / PI,         
+		#0.15) 
 	if velocity.x < 0:
 			$AnimatedSprite2D.flip_h = false
 	elif velocity.x > 0:
