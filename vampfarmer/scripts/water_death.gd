@@ -24,11 +24,11 @@ func _on_body_entered(body: Node2D) -> void:
 		scoreboard.reset()
 	
 	# Unhide Coins
-	for coin in get_tree().get_nodes_in_group("apple_coins"):
-			coin.show()
-			coin.collected = false
-			coin.get_node("CollisionShape2D").disabled = false
-			
+		for coin in get_tree().get_nodes_in_group("apple_coins"):
+				coin.show()
+				coin.collected = false
+				coin.get_node("CollisionShape2D").disabled = false
+				
 			
 	
 	

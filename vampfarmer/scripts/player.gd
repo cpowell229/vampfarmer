@@ -18,7 +18,7 @@ var enemy_attack_cooldown = true
 
 #@onready var spawn_point = get_node("/root/level1/Spawnpoint")
 @onready var spawn_point = $"../Spawnpoint"
-@onready var scoreboard = %Scoreboard
+@onready var scoreboard = $"../Scoreboard"
 var bat_scene = preload("res://scenes/bat.tscn")
 
 func player():

@@ -32,6 +32,7 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		#body.collected_l1_coins += 1
 		var current_scene = get_tree().current_scene.name
 		level.coins_left -= 1
+		print(level.coins_left)
 			
 		
 		# add to score somewhere? (0/3 -> 1/3, etc.)
@@ -61,5 +62,12 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 				door_instance.global_position = spawn_point.global_position
 			
 				get_tree().get_root().get_node("Level2").add_child(door_instance)
+				
+			if current_scene_name == "level3":
+				print("level tree!")
+				Global.beat_level3 = true
+				var spawn_point = get_tree().get_root().get_node("level3/Door_Spawnpoint")
+				door_instance.global_position = spawn_point.global_position
+				get_tree().get_root().get_node("level3").add_child(door_instance)
 			
 			

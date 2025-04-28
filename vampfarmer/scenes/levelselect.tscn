@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dopt8ky3lrwqo"]
+[gd_scene load_steps=14 format=3 uid="uid://dopt8ky3lrwqo"]
 
 [ext_resource type="PackedScene" uid="uid://ccftt1ibsmf61" path="res://scenes/player.tscn" id="1_otmmb"]
 [ext_resource type="Script" path="res://scripts/levelselect.gd" id="1_psn00"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/door_1.gd" id="3_vajgm"]
 [ext_resource type="Texture2D" uid="uid://bphs8w5r3e2ca" path="res://assets/tilesets/Four Seasons Platformer Tileset [16x16][FREE] - RottingPixels/four-seasons-tileset.png" id="4_dp5fy"]
 [ext_resource type="Texture2D" uid="uid://c2hm6civdny4d" path="res://assets/sprites/door_open.png" id="6_g8y0y"]
+[ext_resource type="FontFile" uid="uid://vk5ccel6rf84" path="res://fonts/PixelOperator8-Bold.ttf" id="7_3x8j3"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_wwswv"]
 normal = Vector2(1, 0)
@@ -328,6 +329,26 @@ position = Vector2(222, -5)
 
 [node name="Level2MarkerSpawnpoint" type="Node2D" parent="Spawnpoints"]
 position = Vector2(210, -5)
+
+[node name="Level3DoorSP" type="Node2D" parent="Spawnpoints"]
+position = Vector2(296, 24)
+
+[node name="Level3KeyMarkerSP" type="Node2D" parent="Spawnpoints"]
+position = Vector2(302, -5)
+
+[node name="Level3MarkerSpawnpoint" type="Node2D" parent="Spawnpoints"]
+position = Vector2(290, -5)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 80.0
+offset_top = -75.0
+offset_right = 357.0
+offset_bottom = -52.0
+theme_override_fonts/font = ExtResource("7_3x8j3")
+theme_override_font_sizes/font_size = 8
+text = "Congratulations! You've beat our game."
+horizontal_alignment = 1
 
 [connection signal="body_entered" from="Door1" to="Door1" method="_on_body_entered"]
 [connection signal="body_exited" from="Door1" to="Door1" method="_on_body_exited"]

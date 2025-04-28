@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@onready var game_won_label = $Label
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var player = get_node_or_null("Player")
@@ -59,6 +59,13 @@ func _ready() -> void:
 		add_child(l2_marker)
 		
 		# ADD CODE TO SPAWN IN DOOR TO LEVEL3
+		var l3_door_scene = preload("res://scenes/door_l3.tscn")
+		var l3_door_marker = l3_door_scene.instantiate()
+		var l3_doorspawn = get_node("./Spawnpoints/Level3DoorSP")
+		l3_door_marker.global_position = l3_doorspawn.global_position
+
+		l3_door_marker.name = "door_l3"
+		add_child(l3_door_marker)
 		
 				 
 	### level2 - just beat level with key, add marker
@@ -77,9 +84,31 @@ func _ready() -> void:
 		
 		
 		
-	### check for level2 beaten (update marker above door, update door2 to open)
-	### check for level3 beaten (update marker above door, update door2 to open)
-	### check for level4 beaten (update marker above door, update door2 to open)
+	### check for level3 beaten (update marker above door)
+	if player and Global.beat_level3:
+		var l1_marker_scene = preload("res://scenes/level1_donemarker.tscn")
+		var l3_marker = l1_marker_scene.instantiate()
+		
+		var l3_spawn = get_node("./Spawnpoints/Level3MarkerSpawnpoint")
+		l3_marker.global_position = l3_spawn.global_position
+		add_child(l3_marker)
+		
+	if player and Global.key3:
+		var key3_marker_scene = preload("res://scenes/level1_keymarker.tscn")
+		var key3_marker = key3_marker_scene.instantiate()
+		var key3_spawn = get_node("./Spawnpoints/Level3KeyMarkerSP")
+		key3_marker.global_position = key3_spawn.global_position
+		add_child(key3_marker)
+	
+	if player and Global.beat_level3 and Global.key3:
+		var l3_door = get_node("door_l3")
+		remove_child(l3_door)
+		
+	
+	if player and Global.key1 and Global.key2 and Global.key3:
+		game_won_label.visible = true
+		
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,6 +1,6 @@
 extends Area2D
 @onready var scoreboard = %Scoreboard
-@onready var level2 = $".."
+@onready var level3 = $".."
 ## Called when the node enters the scene tree for the first time.
 #func _ready() -> void:
 	#pass # Replace with function body.
@@ -14,10 +14,10 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	# TP back to spawn
 	if body.name == "Player":
-		var spawn = get_node("/root/Level2/Spawnpoint")
+		var spawn = get_node("/root/level3/Spawnpoint")
 		body.global_position = spawn.global_position
 		body.collected_l1_coins = 0
-		level2.coins_left = 0
+		level3.coins_left = 3
 		body.health = 50
 		Global.cur_uses = 0
 		Global.disabled = false
