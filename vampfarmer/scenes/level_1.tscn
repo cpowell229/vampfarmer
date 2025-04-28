@@ -260,11 +260,6 @@ shape = SubResource("SegmentShape2D_y60vu")
 z_index = 1
 position = Vector2(29, 18)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2(0, -5)
-zoom = Vector2(4, 4)
-position_smoothing_enabled = true
-
 [node name="AppleCoin" parent="." instance=ExtResource("4_m6e73")]
 position = Vector2(393, -110)
 

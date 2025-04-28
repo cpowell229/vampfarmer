@@ -23,6 +23,7 @@ func player():
 	pass
 func _ready() -> void:
 	label.visible = false
+	Global.start()
 
 func _physics_process(delta: float) -> void:
 	attack()

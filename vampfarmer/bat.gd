@@ -1,15 +1,19 @@
 extends CharacterBody2D
 
-
+var collected_l1_coins = 0
 var max_speed = 150
 var acceleration = 400
 var bat_damp = 6.0           
 var bat_turn_boost = 1.7  
 var player_scene := preload("res://scenes/player.tscn")
-@onready var cam   : Camera2D = $Camera2D
+
 var already_swapped = false
 var exit = false
+var was_on_floor = false
+@onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 
+func bat():
+	pass
 func _ready() -> void:
 	$AnimatedSprite2D.play("fly")
 	$bat_duration.start()
@@ -20,6 +24,7 @@ func move(delta):
 		Input.get_action_strength("ui_down")  - Input.get_action_strength("ui_up")
 	)
 	if Input.is_action_just_pressed("bat_mode"):
+		anim.play("revert")
 		end_bat_mode()
 	input_vec = input_vec.normalized()
 	if not input_vec.is_zero_approx():
@@ -29,7 +34,7 @@ func move(delta):
 	if velocity.length() > max_speed:
 		velocity = velocity.normalized() * max_speed
 	if input_vec.is_zero_approx():
-		velocity = velocity.move_toward(Vector2.ZERO, bat_damp * get_physics_process_delta_time())
+		velocity.x = 0
 	move_and_slide()
 	if velocity.length() > 10:
 		rotation_degrees = lerp_angle(rotation_degrees,
@@ -38,14 +43,16 @@ func move(delta):
 	if velocity.x < 0:
 			$AnimatedSprite2D.flip_h = false
 	elif velocity.x > 0:
-			$AnimatedSprite2D.flip_h = true                                
+			$AnimatedSprite2D.flip_h = true
+						  
 
 func _physics_process(delta: float) -> void:
 	move(delta)
-	if exit:
-		end_bat_mode()
+	flight()
+	
 	
 func end_bat_mode():
+	anim.play("revert")
 	print("swap called  frame:", Engine.get_frames_drawn())
 
 	if already_swapped:
@@ -59,6 +66,19 @@ func end_bat_mode():
 	get_tree().current_scene.add_child(player)
 	Global.cur_uses = Global.cur_uses + 1 
 
+func flight():
+	var on_floor = is_on_floor()
+	if on_floor and not was_on_floor:
+		anim.play("land")
+	elif not on_floor:
+		if velocity.y < 0:
+			if anim.animation != "fly":
+				anim.play("fly")
+		elif velocity.y > 0:
+			if anim.animation != "drop":
+				anim.play("drop")
+
+	was_on_floor = on_floor
 
 
 func _on_bat_duration_timeout() -> void:
